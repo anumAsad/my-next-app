@@ -1,17 +1,20 @@
-import React from 'react'
+import React from "react";
 
-
-  const Header = () => {
-  
-
-
+const Header = () => {
   return (
-    <div className='container flex items-center gap-16 justify-center text-center w-full bg-black text-white px-[1440] h-12'>
-        <div className="hidden md:block">Sign up and get 20% off to your first order. 
-        <b className='text-bold underline p-5 hover:cursor-pointer'>Sign Up Now</b></div>
-
+    <div className="w-full bg-black text-white h-12 flex items-center justify-center px-4">
+      <div className="hidden md:block">
+        Sign up and get 20% off your first order.{" "}
+        <b className="text-bold underline px-2 hover:cursor-pointer">
+          Sign Up Now
+        </b>
+      </div>
+      <div className="block md:hidden text-sm text-center">
+        🎉 Get 20% off your first order!{" "}
+        <b className="underline hover:cursor-pointer">Sign Up Now</b>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

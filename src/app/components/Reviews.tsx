@@ -23,14 +23,15 @@ const Reviews = () => {
           review: "Shop.co never fails to impress me with their outstanding customer service and quality. I&apos;ve received so many compliments on the outfits I&apos;ve purchased!",
         },
       ];
+  
   return (
     <section className="py-10 bg-white">
         <h2 className="text-3xl font-bold text-center mb-6">OUR HAPPY CUSTOMERS</h2>
-        <div className="flex gap-4 overflow-x-scroll scrollbar-hide px-6">
+        <div className="flex flex-wrap justify-center gap-6 px-6">
           {reviews.map((review, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-lg p-4 flex-shrink-0 w-72 md:w-80"
+              className="bg-white rounded-lg shadow-lg p-4 w-full sm:w-72 md:w-80"
             >
               <div className="flex items-center gap-2 mb-2">
                 {Array.from({ length: review.rating }).map((_, i) => (

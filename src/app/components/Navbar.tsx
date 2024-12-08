@@ -1,6 +1,7 @@
-import {SearchIcon, ShoppingCart, User } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
+'use client'
+import { SearchIcon, ShoppingCart, User } from "lucide-react";
+import Link from "next/link";
+import React, { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,52 +9,91 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { FaChevronDown } from 'react-icons/fa'
-
+} from "@/components/ui/dropdown-menu";
+import { FaChevronDown, FaBars } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 
 const Navbar = () => {
-  return (
-    <div className='container w-full flex items-center justify-around px-[1440] py-16 h-12 sm:py-20 min-h-20 border-b-gray-800'>
-        <div className='text-3xl font-extrabold'>SHOP.CO</div>
-        <div>
-            <ul className='flex justify-around gap-8'>
-            
-             <li>
-                <button className='flex items-center gap-1'>Shop<FaChevronDown></FaChevronDown></button>
-             </li>
-             <li>On Sale</li>
-             <li>New Arrivals</li>
-             <li>Brands</li>
-            </ul>
-        </div>
-        <div className='flex items-center justify-around gap-2'>
-        <div className="hidden md:block items-center max-w-md mx-auto bg-gray-100 border border-gray-300 px-4 py-2">
-      <input
-        type="text"
-        placeholder="Search for product"
-        className="flex-grow bg-transparent text-gray-700 placeholder-gray-500 outline-none"
-      />
-      
-      </div>
-      <SearchIcon className='block md:hidden '/>
-        <button><Link href="/cart"><ShoppingCart /></Link></button>
-        
-        <DropdownMenu>
-        <DropdownMenuTrigger><User className='rounded-full'/></DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Manage My Account</DropdownMenuItem>
-          <DropdownMenuItem>My Order</DropdownMenuItem>
-          <DropdownMenuItem>My Cancellations</DropdownMenuItem>
-          <DropdownMenuItem>My Reviews</DropdownMenuItem>
-          <DropdownMenuItem>Logout</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-        </div>
-    </div>
-  )
-}
+  const [menuOpen, setMenuOpen] = useState(false);
 
-export default Navbar
+  return (
+    <div className="container w-full flex items-center justify-between px-6 md:px-16 lg:px-[1440] py-4 sm:py-6 min-h-20 border-b border-gray-300 bg-white">
+      {/* Logo */}
+      <div className="text-3xl font-extrabold">SHOP.CO</div>
+
+      {/* Navigation Links (Desktop) */}
+      <div className="hidden md:flex gap-8">
+        <button className="flex items-center gap-1">
+          Shop <FaChevronDown />
+        </button>
+        <Link href="/on-sale">On Sale</Link>
+        <Link href="/new-arrivals">New Arrivals</Link>
+        <Link href="/brands">Brands</Link>
+      </div>
+
+      {/* Search, Cart, and Account */}
+      <div className="flex items-center gap-4">
+        <div className="hidden md:block max-w-md bg-gray-100 border border-gray-300 px-4 py-2 rounded-md">
+          <input
+            type="text"
+            placeholder="Search for product"
+            className="w-full bg-transparent text-gray-700 placeholder-gray-500 outline-none"
+          />
+        </div>
+        <SearchIcon className="block md:hidden text-gray-600" />
+        <Link href="/cart">
+          <ShoppingCart className="text-gray-600" />
+        </Link>
+
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <User className="text-gray-600 rounded-full" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Manage My Account</DropdownMenuItem>
+            <DropdownMenuItem>My Orders</DropdownMenuItem>
+            <DropdownMenuItem>My Cancellations</DropdownMenuItem>
+            <DropdownMenuItem>My Reviews</DropdownMenuItem>
+            <DropdownMenuItem>Logout</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
+      {/* Burger Menu (Mobile) */}
+      <div className="md:hidden">
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="text-gray-600 text-2xl"
+        >
+          {menuOpen ? <IoClose /> : <FaBars />}
+        </button>
+      </div>
+
+      {/* Mobile Navigation Menu */}
+      {menuOpen && (
+        <div className="absolute top-16 left-0 w-full bg-white shadow-lg z-50">
+          <ul className="flex flex-col gap-4 p-6">
+            <li>
+              <button className="flex items-center gap-1">
+                Shop <FaChevronDown />
+              </button>
+            </li>
+            <li>
+              <Link href="/on-sale">On Sale</Link>
+            </li>
+            <li>
+              <Link href="/new-arrivals">New Arrivals</Link>
+            </li>
+            <li>
+              <Link href="/brands">Brands</Link>
+            </li>
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Navbar;
