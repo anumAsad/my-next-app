@@ -1,4 +1,4 @@
-import { Heart, SearchIcon, ShoppingCart, User } from 'lucide-react'
+import {SearchIcon, ShoppingCart, User } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import {

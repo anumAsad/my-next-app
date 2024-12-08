@@ -28,7 +28,7 @@ const DressStyle = () => {
     
             {/* Formal */}
             <div className="relative group">
-              <img
+              <Image
                 src="/formal.png"
                 alt="Formal"
                 width={684}
@@ -46,7 +46,7 @@ const DressStyle = () => {
             <div className='flex gap-5 mt-5'>
             {/* Party */}
             <div className="relative group">
-              <img
+              <Image
                 src="/party.png"
                 alt="Party"
                 width={684}
@@ -62,7 +62,7 @@ const DressStyle = () => {
     
             {/* Gym */}
             <div className="relative group">
-              <img
+              <Image
                 src="/gym.png"
                 alt="Gym"
                 width={409}
